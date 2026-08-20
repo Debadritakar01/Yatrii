@@ -1,0 +1,23 @@
+{
+  "name": "yatrii-travel-app",
+  "version": "2.0.0",
+  "description": "Yatrii - All-in-One Mobility & Hotel Booking Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "travel",
+    "cab-booking",
+    "hotel-booking",
+    "bike-taxi",
+    "yatrii"
+  ],
+  "author": "Yatrii Technologies",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

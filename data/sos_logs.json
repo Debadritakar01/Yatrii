@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sos_1787227568559",
+    "pnr": "ACTIVE_RIDE",
+    "telemetry": {
+      "lat": 28.5562,
+      "lng": 77.1
+    },
+    "vehicle": "DL 01 AB 4321",
+    "driver": "Rajesh Kumar",
+    "timestamp": "2026-08-20T12:06:08.559Z",
+    "status": "Dispatched to 112 Control Room"
+  },
+  {
+    "id": "sos_1787226968188",
+    "pnr": "ACTIVE_RIDE",
+    "telemetry": {
+      "lat": 28.5562,
+      "lng": 77.1
+    },
+    "vehicle": "DL 01 AB 4321",
+    "driver": "Rajesh Kumar",
+    "timestamp": "2026-08-20T11:56:08.189Z",
+    "status": "Dispatched to 112 Control Room"
+  },
+  {
+    "id": "sos_1787226371270",
+    "pnr": "ACTIVE_RIDE",
+    "telemetry": {
+      "lat": 28.5562,
+      "lng": 77.1
+    },
+    "vehicle": "DL 01 AB 4321",
+    "driver": "Rajesh Kumar",
+    "timestamp": "2026-08-20T11:46:11.270Z",
+    "status": "Dispatched to 112 Control Room"
+  }
+]

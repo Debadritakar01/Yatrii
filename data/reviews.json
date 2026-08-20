@@ -1,0 +1,47 @@
+[
+  {
+    "id": "rev_1787227513171",
+    "pnr": "YTR-GUEST",
+    "userName": "Rahul Sharma",
+    "rating": 5,
+    "comment": "Super smooth ride from DEL airport. Car was immaculate with water bottle!",
+    "category": "ride",
+    "createdAt": "20 Aug"
+  },
+  {
+    "id": "rev_1787227017283",
+    "pnr": "YTR-GUEST",
+    "userName": "Rahul Sharma",
+    "rating": 5,
+    "comment": "Super smooth ride from DEL airport. Car was immaculate with water bottle!",
+    "category": "ride",
+    "createdAt": "20 Aug"
+  },
+  {
+    "id": "rev_1787226563099",
+    "pnr": "YTR-GUEST",
+    "userName": "Rahul Sharma",
+    "rating": 4,
+    "comment": "Super smooth ride from DEL airport. Car was immaculate with water bottle!",
+    "category": "ride",
+    "createdAt": "20 Aug"
+  },
+  {
+    "id": "rev_1787226556539",
+    "pnr": "YTR-GUEST",
+    "userName": "Rahul Sharma",
+    "rating": 5,
+    "comment": "Super smooth ride from DEL airport. Car was immaculate with water bottle!",
+    "category": "ride",
+    "createdAt": "20 Aug"
+  },
+  {
+    "id": "rev_001",
+    "pnr": "YTR-10824",
+    "userName": "Rahul Sharma",
+    "rating": 5,
+    "comment": "Super smooth ride from DEL airport. Car was immaculate with sanitizers and water bottle!",
+    "category": "ride",
+    "createdAt": "20 Aug, 11:00"
+  }
+]

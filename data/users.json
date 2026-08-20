@@ -1,0 +1,27 @@
+[
+  {
+    "id": "usr_001",
+    "name": "Rahul Sharma",
+    "phone": "+91 98765 43210",
+    "email": "rahul.sharma@example.com",
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+    "walletBalance": 1500,
+    "savedPlaces": [
+      {
+        "label": "Home",
+        "address": "Flat 402, Green Glen Heights, Bengaluru",
+        "icon": "🏠"
+      },
+      {
+        "label": "Work",
+        "address": "Embassy TechVillage, Outer Ring Road, Bengaluru",
+        "icon": "💼"
+      },
+      {
+        "label": "Airport",
+        "address": "Kempegowda International Airport (BLR)",
+        "icon": "✈️"
+      }
+    ]
+  }
+]

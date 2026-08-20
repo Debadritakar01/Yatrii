@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yatrii (यात्री) - Book Cabs, Cars, Bikes, Autos, Rentals & Luxury Hotels</title>
+  <meta name="description" content="Yatrii is India's all-in-one travel platform. Instant booking for Bikes, Autos, City Cabs, SUVs, Self-Drive Car Rentals, Outstation Cabs, and 5-Star Luxury Hotels & Stays.">
+  <meta name="keywords" content="cab booking, bike taxi, auto booking, self drive car, outstation cab, hotel booking, resorts, yatrii, travel app">
+
+  <!-- Favicon Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Yatrii Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Gradients for Visual Richness -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+  </div>
+
+  <!-- Site Header / Navbar -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <!-- Logo -->
+      <a href="#" class="brand-logo" id="logo-btn" aria-label="Yatrii Home">
+        <div class="brand-icon">
+          <i class="ri-compass-3-fill"></i>
+        </div>
+        <span class="brand-name">Yatrii</span>
+        <span class="brand-badge">Safar 2.0</span>
+      </a>
+
+      <!-- Center Nav Pills -->
+      <nav class="nav-center" aria-label="Main Navigation">
+        <button class="nav-pill-btn active" data-target-mode="rides">
+          <i class="ri-taxi-fill"></i> Rides & Cabs
+        </button>
+        <button class="nav-pill-btn" data-target-mode="hotels">
+          <i class="ri-hotel-bed-fill"></i> Hotels & Stays
+        </button>
+        <button class="nav-pill-btn" data-target-mode="rentals">
+          <i class="ri-car-fill"></i> Self-Drive
+        </button>
+        <button class="nav-pill-btn" data-target-mode="outstation">
+          <i class="ri-roadster-fill"></i> Outstation
+        </button>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="nav-actions">
+        <!-- Emergency SOS Button -->
+        <button class="sos-btn" id="sos-open-btn" title="Emergency Safety Center" aria-label="Emergency SOS">
+          <i class="ri-alarm-warning-fill"></i>
+          <span>SOS</span>
+        </button>
+
+        <!-- My Bookings Drawer Trigger -->
+        <button class="bookings-btn" id="my-bookings-btn" title="View Bookings & Passes" aria-label="My Bookings">
+          <i class="ri-ticket-2-fill"></i>
+          <span>My Trips</span>
+          <span class="badge-count" id="nav-booking-count">0</span>
+        </button>
+
+        <!-- User Profile / Auth Button -->
+        <button class="user-profile-btn" id="user-profile-btn" title="User Account">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="User" class="nav-avatar" id="nav-user-avatar">
+          <span class="nav-user-name" id="nav-user-name">Rahul S.</span>
+          <span class="wallet-pill" title="Yatrii Wallet Balance"><i class="ri-wallet-3-fill"></i> ₹1,500</span>
+        </button>
+
+        <!-- Theme Toggle Button (React-powered island) -->
+        <div id="react-theme-root"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-header">
+          <div class="hero-tagline">
+            <i class="ri-sparkling-fill"></i> India's #1 Unified Mobility & Stay Hub
+          </div>
+          <h1 class="hero-title">
+            Book <span class="highlight">Cabs, Bikes, Autos</span> & Luxury Stays in One Place
+          </h1>
+          <p class="hero-subtitle">
+            Transparent fares, zero hidden surcharges, verified highway-trained chauffeurs, and hand-curated 5-star heritage stays across 120+ cities.
+          </p>
+        </div>
+
+        <!-- Main Booking Glass Card -->
+        <div class="booking-hub-card" id="booking-hub">
+          <!-- Mode Tabs Switcher -->
+          <div class="mode-tabs">
+            <button class="mode-tab-btn active" data-mode="rides">
+              <span class="tab-icon">🚖</span> City Rides (Cab/Auto/Moto)
+            </button>
+            <button class="mode-tab-btn" data-mode="hotels">
+              <span class="tab-icon">🏨</span> Hotels & Luxury Resorts
+            </button>
+            <button class="mode-tab-btn" data-mode="rentals">
+              <span class="tab-icon">🚗</span> Self-Drive Car Rentals
+            </button>
+            <button class="mode-tab-btn" data-mode="outstation">
+              <span class="tab-icon">🛣️</span> Outstation & Intercity
+            </button>
+          </div>
+
+          <!-- Form Panel 1: Rides & Cabs Search -->
+          <div class="search-form-panel" id="rides-search-panel">
+            <div class="search-form-grid rides-form-grid">
+              <!-- Pickup Location Field with Current Location Button -->
+              <div class="form-field-group">
+                <div class="field-label-row">
+                  <label class="field-label" for="pickup-input">
+                    <i class="ri-map-pin-user-fill"></i> Pickup Location
+                  </label>
+                  <button type="button" class="btn-location-gps" id="btn-use-current-location" title="Detect GPS Location">
+                    <i class="ri-crosshair-2-fill"></i> Current Location
+                  </button>
+                </div>
+                <input type="text" id="pickup-input" class="field-input" placeholder="Enter pickup spot or landmark..." value="Indira Gandhi International Airport (DEL)" autocomplete="off">
+                <div class="autocomplete-dropdown" id="pickup-dropdown"></div>
+              </div>
+
+              <!-- Swap Button (⇄) for UX convenience -->
+              <button type="button" class="btn-swap-locations" id="btn-swap-locations" title="Swap Pickup and Drop">
+                <i class="ri-arrow-left-right-line"></i>
+              </button>
+
+              <!-- Drop Location Field -->
+              <div class="form-field-group">
+                <label class="field-label" for="drop-input">
+                  <i class="ri-map-pin-2-fill"></i> Drop Destination
+                </label>
+                <input type="text" id="drop-input" class="field-input" placeholder="Where to?" value="Connaught Place Central Hub" autocomplete="off">
+                <div class="autocomplete-dropdown" id="drop-dropdown"></div>
+              </div>
+
+              <!-- Schedule Date/Time -->
+              <div class="form-field-group">
+                <label class="field-label" for="ride-time-select">
+                  <i class="ri-time-fill"></i> Pickup Time
+                </label>
+                <select id="ride-time-select" class="field-input">
+                  <option value="now">⚡ Book Now (Instant Pickup)</option>
+                  <option value="later_15">In 15 minutes</option>
+                  <option value="later_30">In 30 minutes</option>
+                  <option value="later_60">In 1 hour</option>
+                  <option value="tomorrow_morning">Tomorrow Morning (08:00 AM)</option>
+                </select>
+              </div>
+
+              <!-- Search/Estimate Button -->
+              <button class="btn-primary-search" id="btn-estimate-rides">
+                <i class="ri-search-eye-line"></i> Find Rides
+              </button>
+            </div>
+
+            <!-- Quick Pickup Shortcuts -->
+            <div class="quick-shortcuts-row">
+              <span class="shortcut-label"><i class="ri-compass-discover-line"></i> Popular Hotspots:</span>
+              <button class="shortcut-chip" data-pickup="Kempegowda International Airport (BLR)" data-drop="MG Road & Church Street">✈️ Bengaluru Airport ➔ MG Road</button>
+              <button class="shortcut-chip" data-pickup="Chhatrapati Shivaji Maharaj Airport (BOM)" data-drop="Marine Drive & Nariman Point">🌊 Mumbai Airport ➔ Marine Drive</button>
+              <button class="shortcut-chip" data-pickup="Baga Beach & Tito's Lane" data-drop="Candolim Beach, North Goa">🌴 Baga Beach ➔ Candolim</button>
+              <button class="shortcut-chip" data-pickup="Indira Gandhi International Airport (DEL)" data-drop="Cyber City DLF Phase 2">💼 Delhi Airport ➔ Cyber City</button>
+            </div>
+          </div>
+
+          <!-- Form Panel 2: Hotels & Stays Search (Hidden by default) -->
+          <div class="search-form-panel" id="hotels-search-panel" style="display: none;">
+            <div class="search-form-grid">
+              <!-- Destination -->
+              <div class="form-field-group">
+                <label class="field-label" for="hotel-city-input">
+                  <i class="ri-building-4-fill"></i> City / Destination
+                </label>
+                <input type="text" id="hotel-city-input" class="field-input" placeholder="e.g. Goa, Jaipur, Manali, Mumbai..." value="Jaipur">
+              </div>
+
+              <!-- Check-In Date -->
+              <div class="form-field-group">
+                <label class="field-label" for="hotel-checkin">
+                  <i class="ri-calendar-check-fill"></i> Check-in Date
+                </label>
+                <input type="date" id="hotel-checkin" class="field-input">
+              </div>
+
+              <!-- Check-Out Date -->
+              <div class="form-field-group">
+                <label class="field-label" for="hotel-checkout">
+                  <i class="ri-calendar-event-fill"></i> Check-out Date
+                </label>
+                <input type="date" id="hotel-checkout" class="field-input">
+              </div>
+
+              <!-- Guests & Rooms -->
+              <div class="form-field-group">
+                <label class="field-label" for="hotel-guests-select">
+                  <i class="ri-user-star-fill"></i> Guests & Rooms
+                </label>
+                <select id="hotel-guests-select" class="field-input">
+                  <option value="1_room_2_guests">1 Room, 2 Guests</option>
+                  <option value="1_room_1_guest">1 Room, 1 Guest (Solo)</option>
+                  <option value="1_room_3_guests">1 Room, 3 Guests</option>
+                  <option value="2_rooms_4_guests">2 Rooms, 4 Guests (Family)</option>
+                  <option value="3_rooms_6_guests">3 Rooms, 6+ Guests (Group)</option>
+                </select>
+              </div>
+
+              <!-- Search Hotels Button -->
+              <button class="btn-primary-search" id="btn-search-hotels">
+                <i class="ri-hotel-fill"></i> Search Stays
+              </button>
+            </div>
+
+            <!-- Quick City Search Chips -->
+            <div class="quick-shortcuts-row">
+              <span class="shortcut-label"><i class="ri-fire-fill"></i> Top Destinations:</span>
+              <button class="shortcut-chip hotel-quick-city" data-city="Goa">🏖️ Goa (Beaches & Nightlife)</button>
+              <button class="shortcut-chip hotel-quick-city" data-city="Jaipur">🏰 Jaipur (Royal Palaces)</button>
+              <button class="shortcut-chip hotel-quick-city" data-city="Manali">🏔️ Manali (Snow & Chalets)</button>
+              <button class="shortcut-chip hotel-quick-city" data-city="Kerala">🛶 Kerala (Backwater Villas)</button>
+              <button class="shortcut-chip hotel-quick-city" data-city="Mumbai">🌆 Mumbai (Skyline Suites)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Rides Fleet & Interactive Route Map -->
+    <section class="section-rides-view" id="section-rides">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div>
+            <h2 class="section-title">Select Your Yatrii Ride</h2>
+            <p class="section-subtitle">Live transparent estimates with instant driver allocation & route preview</p>
+          </div>
+          <div class="filter-ride-types">
+            <span class="live-indicator"><span class="live-dot"></span> 5 Drivers nearby</span>
+          </div>
+        </div>
+
+        <div class="rides-split-layout">
+          <!-- Left Column: Interactive Map Frame -->
+          <div class="map-visual-card">
+            <div class="map-header-bar">
+              <div class="live-indicator">
+                <span class="live-dot"></span> Live GPS Trajectory
+              </div>
+              <span id="map-route-text" style="color: var(--text-muted);">DEL Airport ➔ Connaught Place</span>
+            </div>
+
+            <!-- Leaflet Map Container -->
+            <div id="yatrii-map"></div>
+
+            <!-- Bottom Floating Route Metrics -->
+            <div class="map-route-summary">
+              <div class="route-stat-item">
+                <div class="stat-lbl">Estimated Distance</div>
+                <div class="stat-val" id="route-dist-val">18.4 km</div>
+              </div>
+              <div class="route-stat-item">
+                <div class="stat-lbl">Trip Duration</div>
+                <div class="stat-val" id="route-time-val">32 mins</div>
+              </div>
+              <div class="route-stat-item">
+                <div class="stat-lbl">Traffic Level</div>
+                <div class="stat-val" style="color: var(--color-success);">Moderate</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Vehicle Cards Selection Grid -->
+          <div class="vehicle-fleet-wrapper">
+            <div class="vehicle-fleet-container" id="vehicle-fleet-list">
+              <!-- Dynamically Populated by JS -->
+            </div>
+
+            <!-- Book Selected Ride CTA -->
+            <button class="btn-book-vehicle-action" id="btn-proceed-ride-booking">
+              <i class="ri-shield-check-fill"></i> Proceed to Book Ride
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Hotels & Stays Explorer -->
+    <section class="hotels-section" id="section-hotels">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div>
+            <h2 class="section-title">Hand-Picked Hotels & Luxury Stays</h2>
+            <p class="section-subtitle">Royal heritage havelis, beachfront villas, snow chalets & business suites</p>
+          </div>
+          <div class="hotels-results-header">
+            <div class="sort-dropdown-wrap">
+              <label for="hotel-sort-select">Sort by:</label>
+              <select id="hotel-sort-select" class="sort-select">
+                <option value="recommended">Recommended & Popular</option>
+                <option value="price_low">Price: Low to High</option>
+                <option value="price_high">Price: High to Low</option>
+                <option value="rating">Guest Rating (Highest First)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="hotels-layout-grid">
+          <!-- Left: Filter Sidebar -->
+          <aside class="filter-sidebar">
+            <div class="filter-header">
+              <span class="filter-title"><i class="ri-filter-3-fill"></i> Filters</span>
+              <button class="btn-reset-filter" id="btn-reset-hotel-filters">Reset All</button>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div class="filter-group">
+              <div class="filter-group-label">Max Price Per Night</div>
+              <div class="price-slider-wrap">
+                <input type="range" id="price-range-slider" class="range-input" min="2000" max="15000" step="500" value="12000">
+                <div class="price-range-labels">
+                  <span>₹2,000</span>
+                  <span id="slider-max-display" style="color: var(--brand-primary); font-weight: 800;">₹12,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Star Rating Filter -->
+            <div class="filter-group">
+              <div class="filter-group-label">Star Category</div>
+              <div class="star-btn-group">
+                <button class="star-filter-btn" data-stars="all">All</button>
+                <button class="star-filter-btn" data-stars="4">4★ +</button>
+                <button class="star-filter-btn" data-stars="5">5★ Luxury</button>
+              </div>
+            </div>
+
+            <!-- Amenities Checkboxes -->
+            <div class="filter-group">
+              <div class="filter-group-label">Popular Amenities</div>
+              <div class="amenity-checkbox-list">
+                <label class="checkbox-label">
+                  <input type="checkbox" class="amenity-filter-cb" value="Free High-Speed WiFi">
+                  <span>Free High-Speed WiFi</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="amenity-filter-cb" value="Swimming Pool">
+                  <span>Swimming Pool</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="amenity-filter-cb" value="Breakfast Included">
+                  <span>Breakfast Included</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="amenity-filter-cb" value="Direct Beach Access">
+                  <span>Direct Beach Access</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="amenity-filter-cb" value="Ayurvedic Spa">
+                  <span>Luxury Spa & Wellness</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Right: Hotel Cards Grid -->
+          <div class="hotels-results-container">
+            <div class="hotels-grid" id="hotels-grid">
+              <!-- Dynamically Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Special Offers & Discount Coupons -->
+    <section class="offers-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div>
+            <h2 class="section-title">Exclusive Travel Vouchers & Deals</h2>
+            <p class="section-subtitle">Apply coupon codes during checkout for instant extra savings</p>
+          </div>
+        </div>
+
+        <div class="offers-grid" id="offers-grid">
+          <!-- Dynamically Populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Searchable Help & FAQ Center (UX Upgrade) -->
+    <section class="faq-section" id="section-faq">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Instant answers to everything about rides, fares, stays & safety</p>
+          </div>
+        </div>
+
+        <div class="faq-accordion-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How does Yatrii ensure zero hidden charges and fair fares?</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yatrii calculates upfront guaranteed fares based strictly on distance and travel duration. Tolls, state taxes, and night allowances are transparently highlighted before you confirm your booking.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I cancel my ride or hotel stay for free?</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! Ride cancellations before driver arrival are 100% free with zero penalty. Hotel stays offer free cancellation up to 24 hours prior to check-in with an instant refund to your source account or Yatrii Wallet.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I use the Start-Trip OTP?</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="faq-answer">
+              <p>When you book a ride, a unique 4-digit OTP is generated on your Digital Boarding Pass. Share this OTP with your chauffeur upon arrival to safely initiate the ride telemetry.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What are the safety features available on Yatrii?</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Every trip comes with encrypted GPS live tracking, 1-click Emergency SOS dispatch to police control room (112), live ride location sharing with family, and verified background-checked chauffeurs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Trust & Safety Pillars -->
+    <section class="trust-section">
+      <div class="container">
+        <div class="trust-features-grid">
+          <div class="trust-feature-card">
+            <div class="trust-icon-box">
+              <i class="ri-shield-flash-fill"></i>
+            </div>
+            <h3 class="trust-title">24x7 Safety & SOS</h3>
+            <p class="trust-desc">Live GPS telemetry tracking, emergency call dispatch, and verified ride OTP security verification on every trip.</p>
+          </div>
+
+          <div class="trust-feature-card">
+            <div class="trust-icon-box">
+              <i class="ri-money-rupee-circle-fill"></i>
+            </div>
+            <h3 class="trust-title">Zero Surge Gouging</h3>
+            <p class="trust-desc">Transparent distance & duration based tariffs. What you see is strictly what you pay—no hidden surprises.</p>
+          </div>
+
+          <div class="trust-feature-card">
+            <div class="trust-icon-box">
+              <i class="ri-user-smile-fill"></i>
+            </div>
+            <h3 class="trust-title">Highway Chauffeurs</h3>
+            <p class="trust-desc">Top 1% rated drivers with background checks, clean sanitized fleet standards, and defensive driving certification.</p>
+          </div>
+
+          <div class="trust-feature-card">
+            <div class="trust-icon-box">
+              <i class="ri-sparkling-2-fill"></i>
+            </div>
+            <h3 class="trust-title">Verified Luxury Stays</h3>
+            <p class="trust-desc">100% physically inspected boutique properties with real photos, genuine guest reviews, and guaranteed check-in.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Customer Testimonials -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <div>
+            <h2 class="section-title">Loved by Millions of Travelers</h2>
+            <p class="section-subtitle">Real experiences from daily commuters, road-trippers, and luxury holidaymakers</p>
+          </div>
+        </div>
+
+        <div class="testimonials-grid" id="testimonials-grid">
+          <!-- Dynamically Populated from data.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <i class="ri-compass-3-fill"></i>
+            </div>
+            <span class="brand-name">Yatrii</span>
+          </div>
+          <p class="footer-brand-bio">
+            Yatrii (यात्री) is transforming the way India travels. From instant local bike taxis and auto rickshaws to luxury outstation sedans and 5-star heritage retreats.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Rides & Fleet</h4>
+          <ul class="footer-links-list">
+            <li><a href="#section-rides">Yatrii Moto (Bike Taxi)</a></li>
+            <li><a href="#section-rides">Yatrii Auto Rickshaw</a></li>
+            <li><a href="#section-rides">City AC Cabs & Hatchbacks</a></li>
+            <li><a href="#section-rides">Prime Executive Sedans</a></li>
+            <li><a href="#section-rides">SUV XL 6-Seaters</a></li>
+            <li><a href="#section-rides">Self-Drive 4x4 Thar & EV</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Stays & Getaways</h4>
+          <ul class="footer-links-list">
+            <li><a href="#section-hotels">Goa Beachfront Resorts</a></li>
+            <li><a href="#section-hotels">Jaipur Royal Havelis</a></li>
+            <li><a href="#section-hotels">Manali Snow Chalets</a></li>
+            <li><a href="#section-hotels">Kerala Backwater Villas</a></li>
+            <li><a href="#section-hotels">Mumbai Business Suites</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Safety & Support</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" id="footer-sos-link"><i class="ri-alarm-warning-fill text-danger"></i> 24x7 Emergency SOS</a></li>
+            <li><a href="#section-faq">Help & FAQ Center</a></li>
+            <li><a href="#">Ride Insurance Coverage</a></li>
+            <li><a href="#">Driver Partner Onboarding</a></li>
+            <li><a href="#">Terms & Cancellation Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>© 2026 Yatrii Technologies India Pvt Ltd. All rights reserved.</p>
+        <p>Backend Active • REST API Connected • Safe & Verified ⚡</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS CONTAINER
+       ========================================================================= -->
+
+  <!-- 1. UNIFIED CHECKOUT & PAYMENT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="checkout-modal-title">Confirm Your Booking</h3>
+        <button class="btn-close-modal" id="btn-close-checkout">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Booking Item Preview -->
+        <div class="modal-summary-box" id="checkout-item-preview">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Passenger Details Form -->
+        <div class="checkout-form-grid">
+          <div class="form-field-group">
+            <label class="field-label" for="passenger-name">Primary Traveler Name</label>
+            <input type="text" id="passenger-name" class="field-input" placeholder="e.g. Rahul Sharma" value="Rahul Sharma">
+          </div>
+          <div class="form-field-group">
+            <label class="field-label" for="passenger-phone">Mobile Number</label>
+            <input type="tel" id="passenger-phone" class="field-input" placeholder="+91 98765 43210" value="+91 98765 43210">
+          </div>
+          <div class="form-field-group full-col">
+            <label class="field-label" for="passenger-email">Email Address (for Digital Pass)</label>
+            <input type="email" id="passenger-email" class="field-input" placeholder="rahul@example.com" value="rahul.sharma@example.com">
+          </div>
+        </div>
+
+        <!-- Promo Code Input Box -->
+        <div class="form-field-group" style="margin-bottom: 1.25rem;">
+          <label class="field-label" for="checkout-coupon-input"><i class="ri-coupon-3-fill"></i> Apply Promo Coupon</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="checkout-coupon-input" class="field-input" placeholder="Enter coupon (e.g. YATRIIFIRST)" style="text-transform: uppercase;">
+            <button class="btn-primary-search" id="btn-apply-coupon" style="min-height: 42px; padding: 0 1.25rem; font-size: 0.9rem;">Apply</button>
+          </div>
+          <div id="coupon-feedback" style="font-size: 0.8rem; margin-top: 0.35rem; font-weight: 600;"></div>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="filter-group-label" style="margin-bottom: 0.6rem;">Select Payment Method</div>
+        <div class="payment-method-selector">
+          <div class="pay-option-card selected" data-payment="upi">
+            <i class="ri-qr-code-line" style="font-size: 1.3rem;"></i>
+            <span>UPI / GPay / PhonePe</span>
+          </div>
+          <div class="pay-option-card" data-payment="card">
+            <i class="ri-bank-card-fill" style="font-size: 1.3rem;"></i>
+            <span>Credit / Debit Card</span>
+          </div>
+          <div class="pay-option-card" data-payment="wallet">
+            <i class="ri-wallet-3-fill" style="font-size: 1.3rem;"></i>
+            <span>Yatrii Wallet (₹1,500)</span>
+          </div>
+          <div class="pay-option-card" data-payment="arrival">
+            <i class="ri-hand-coin-fill" style="font-size: 1.3rem;"></i>
+            <span>Pay on Arrival</span>
+          </div>
+        </div>
+
+        <!-- Add-on checkboxes -->
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;">
+          <label class="checkbox-label">
+            <input type="checkbox" id="chk-insurance" checked>
+            <span>Add Comprehensive Trip Insurance (₹19 per person)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="chk-carbon">
+            <span>Plant a tree to offset journey carbon footprint (₹10)</span>
+          </label>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="modal-summary-box">
+          <div class="summary-row">
+            <span>Base Fare / Tariff:</span>
+            <span id="summary-base-fare">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Taxes & GST (5%):</span>
+            <span id="summary-tax">₹0</span>
+          </div>
+          <div class="summary-row" id="summary-discount-row" style="display: none; color: var(--color-success);">
+            <span>Coupon Discount:</span>
+            <span id="summary-discount">-₹0</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total Payable Amount:</span>
+            <span id="summary-total-fare">₹0</span>
+          </div>
+        </div>
+
+        <!-- Confirm Booking CTA -->
+        <button class="btn-book-vehicle-action" id="btn-confirm-payment">
+          <i class="ri-check-double-line"></i> Pay & Generate Digital Boarding Pass
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. DIGITAL BOARDING PASS / TICKET MODAL -->
+  <div class="modal-overlay" id="ticket-modal">
+    <div class="modal-container" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ri-ticket-2-fill text-warning"></i> Yatrii Digital Pass</h3>
+        <button class="btn-close-modal" id="btn-close-ticket">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.25rem;">
+        <div class="ticket-pass-container" id="printable-ticket">
+          <!-- Top Brand Banner -->
+          <div class="ticket-top-banner">
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 700; opacity: 0.9;">OFFICIAL BOOKING VOUCHER</div>
+              <div style="font-size: 1.4rem; font-weight: 900;" id="ticket-service-name">Yatrii Prime Sedan</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.72rem; opacity: 0.9;">PNR / BOOKING ID</div>
+              <div class="ticket-pnr" id="ticket-pnr-val">YTR-89241</div>
+            </div>
+          </div>
+
+          <!-- Ticket Content -->
+          <div class="ticket-body-content">
+            <!-- Route -->
+            <div class="ticket-route-row">
+              <div class="ticket-stop">
+                <div class="stop-city" id="ticket-from-city">DELHI</div>
+                <div class="stop-loc" id="ticket-pickup-loc">IGI Airport Terminal 3</div>
+              </div>
+              <div class="ticket-mid-flight-icon">
+                <i class="ri-arrow-right-line"></i>
+              </div>
+              <div class="ticket-stop" style="text-align: right;">
+                <div class="stop-city" id="ticket-to-city">CP HUB</div>
+                <div class="stop-loc" id="ticket-drop-loc">Connaught Place Central</div>
+              </div>
+            </div>
+
+            <!-- Perforation Line -->
+            <div class="ticket-perforation-divider"></div>
+
+            <!-- Grid Details -->
+            <div class="ticket-grid-details">
+              <div class="ticket-field">
+                <div class="t-label">PASSENGER</div>
+                <div class="t-val" id="ticket-passenger-name">Rahul Sharma</div>
+              </div>
+              <div class="ticket-field">
+                <div class="t-label">DATE & TIME</div>
+                <div class="t-val" id="ticket-datetime-val">20 Aug, 13:30</div>
+              </div>
+              <div class="ticket-field">
+                <div class="t-label">TOTAL PAID</div>
+                <div class="t-val" style="color: var(--brand-primary);" id="ticket-amount-val">₹485</div>
+              </div>
+            </div>
+
+            <!-- QR & OTP Security Section -->
+            <div class="ticket-qr-section">
+              <div class="otp-box">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #64748b;">START TRIP OTP</div>
+                <div class="otp-code" id="ticket-otp-val">4920</div>
+                <div style="font-size: 0.72rem; color: #94a3b8;">Share with driver upon arrival</div>
+              </div>
+              <div class="ticket-qr-code" id="ticket-qr-container">
+                <!-- SVG QR Code pattern -->
+                <svg viewBox="0 0 100 100" width="100%" height="100%">
+                  <path fill="#0f172a" d="M0,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z M70,0 h30 v30 h-30 z M80,10 h10 v10 h-10 z M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z M40,10 h10 v20 h-10 z M50,40 h20 v10 h-20 z M40,60 h20 v20 h-20 z M70,50 h10 v20 h-10 z M70,80 h20 v10 h-20 z M20,40 h10 v10 h-10 z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ticket Action Buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem;">
+          <button class="nav-pill-btn" id="btn-print-ticket" style="background: var(--bg-tertiary); justify-content: center; width: 100%;">
+            <i class="ri-printer-fill"></i> Print / Save PDF
+          </button>
+          <button class="btn-primary-search" id="btn-start-tracking-ride" style="min-height: 44px; font-size: 0.95rem; justify-content: center;">
+            <i class="ri-radar-fill"></i> Track Live Status
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. LIVE RIDE TRACKER SIMULATOR MODAL -->
+  <div class="modal-overlay" id="tracker-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ri-radar-fill text-success"></i> Live Ride Telemetry</h3>
+        <button class="btn-close-modal" id="btn-close-tracker">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Live Status Banner -->
+        <div class="tracker-status-banner">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--brand-primary); text-transform: uppercase;">CURRENT TRIP STATUS</div>
+            <div style="font-size: 1.25rem; font-weight: 800;" id="tracker-status-text">Driver is en-route to pickup</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">LIVE ETA</div>
+            <div style="font-size: 1.4rem; font-weight: 900; color: var(--color-success);" id="tracker-eta-val">3 mins</div>
+          </div>
+        </div>
+
+        <!-- Assigned Driver Card -->
+        <div class="driver-profile-card">
+          <div class="driver-left">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80" alt="Chauffeur" class="driver-photo">
+            <div>
+              <div style="font-size: 1.1rem; font-weight: 800;">Rajesh Kumar</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">
+                <span class="hotel-rating-floating" style="position: static; display: inline-flex; padding: 0.1rem 0.4rem; font-size: 0.72rem; margin-right: 0.4rem;"><i class="ri-star-fill star"></i> 4.92</span>
+                <span>White Swift Dzire (DL 01 AB 4321)</span>
+              </div>
+            </div>
+          </div>
+          <div class="driver-actions">
+            <button class="btn-circle-action" id="btn-call-driver" title="Call Driver"><i class="ri-phone-fill"></i></button>
+            <button class="btn-circle-action" id="btn-chat-driver" title="Open Interactive Chat"><i class="ri-chat-1-fill"></i></button>
+          </div>
+        </div>
+
+        <!-- Tracking Timeline Stepper -->
+        <div class="tracking-timeline">
+          <div class="timeline-step completed" id="step-matched">
+            <div class="step-circle"><i class="ri-check-line"></i></div>
+            <div class="step-label">Driver Matched</div>
+          </div>
+          <div class="timeline-step active" id="step-arriving">
+            <div class="step-circle"><i class="ri-car-fill"></i></div>
+            <div class="step-label">Arriving</div>
+          </div>
+          <div class="timeline-step" id="step-transit">
+            <div class="step-circle"><i class="ri-road-map-fill"></i></div>
+            <div class="step-label">In Transit</div>
+          </div>
+          <div class="timeline-step" id="step-completed">
+            <div class="step-circle"><i class="ri-flag-2-fill"></i></div>
+            <div class="step-label">Arrived</div>
+          </div>
+        </div>
+
+        <!-- Cancel / SOS / Rate Actions -->
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+          <button class="sos-btn" id="tracker-sos-btn" style="flex: 1; justify-content: center; height: 46px;">
+            <i class="ri-alarm-warning-fill"></i> Emergency SOS
+          </button>
+          <button class="btn-primary-search" id="btn-complete-trip-sim" style="flex: 1; min-height: 46px; font-size: 0.92rem; background: var(--bg-tertiary); color: var(--text-primary); box-shadow: none;">
+            Simulate Ride Completion
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TWO-WAY INTERACTIVE DRIVER CHAT MODAL (UX Upgrade) -->
+  <div class="modal-overlay" id="driver-chat-modal">
+    <div class="modal-container" style="max-width: 480px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop&q=80" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h4 style="margin: 0; font-size: 1rem;">Rajesh Kumar (Chauffeur)</h4>
+            <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 700;">● Online • Swift Dzire</span>
+          </div>
+        </div>
+        <button class="btn-close-modal" id="btn-close-chat">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1rem;">
+        <!-- Chat Message Log -->
+        <div class="chat-messages-container" id="chat-messages-log">
+          <div class="chat-bubble driver-msg">
+            <span class="chat-sender">Rajesh Kumar</span>
+            <p>Namaste! I am on my way to your pickup point. ETA ~3 mins.</p>
+            <span class="chat-time">Just now</span>
+          </div>
+        </div>
+
+        <!-- Quick Reply Chips -->
+        <div class="quick-chat-chips">
+          <button class="chat-chip" data-msg="I am waiting at Pillar #4">📍 At Pillar #4</button>
+          <button class="chat-chip" data-msg="Please turn on the AC">❄️ Turn on AC</button>
+          <button class="chat-chip" data-msg="I have extra luggage">🧳 Extra luggage</button>
+          <button class="chat-chip" data-msg="Where are you right now?">❓ Where are you?</button>
+        </div>
+
+        <!-- Message Input Box -->
+        <div class="chat-input-bar">
+          <input type="text" id="chat-text-input" class="field-input" placeholder="Type a message to your driver...">
+          <button class="btn-send-chat" id="btn-send-chat"><i class="ri-send-plane-fill"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. USER AUTH & PROFILE MODAL (UX Upgrade) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ri-user-star-fill text-warning"></i> Yatrii Account</h3>
+        <button class="btn-close-modal" id="btn-close-auth">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div class="brand-icon" style="margin: 0 auto 0.75rem auto; width: 56px; height: 56px; font-size: 1.8rem;">
+            <i class="ri-compass-3-fill"></i>
+          </div>
+          <h3 style="font-size: 1.3rem;">Welcome to Yatrii</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Enter your details for instant one-tap booking and reward perks</p>
+        </div>
+
+        <form id="auth-form" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="form-field-group">
+            <label class="field-label" for="auth-name">Your Full Name</label>
+            <input type="text" id="auth-name" class="field-input" placeholder="e.g. Rahul Sharma" value="Rahul Sharma">
+          </div>
+          <div class="form-field-group">
+            <label class="field-label" for="auth-phone">Mobile Number</label>
+            <input type="tel" id="auth-phone" class="field-input" placeholder="+91 98765 43210" value="+91 98765 43210">
+          </div>
+          <button type="submit" class="btn-book-vehicle-action" style="margin-top: 0.5rem;">
+            <i class="ri-login-box-fill"></i> Login / Save Profile
+          </button>
+        </form>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); font-size: 0.82rem; color: var(--text-secondary); text-align: center;">
+          ⚡ Yatrii Wallet: <strong>₹1,500 Loaded</strong> • 50+ Cities Covered
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. POST-TRIP REVIEW MODAL (UX Upgrade) -->
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal-container" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ri-star-smile-fill text-warning"></i> Rate Your Experience</h3>
+        <button class="btn-close-modal" id="btn-close-review">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <p style="font-size: 0.95rem; color: var(--text-secondary);">How was your journey with Rajesh Kumar?</p>
+          <div class="interactive-star-rating" id="review-star-group">
+            <i class="ri-star-fill active-star" data-val="1"></i>
+            <i class="ri-star-fill active-star" data-val="2"></i>
+            <i class="ri-star-fill active-star" data-val="3"></i>
+            <i class="ri-star-fill active-star" data-val="4"></i>
+            <i class="ri-star-fill active-star" data-val="5"></i>
+          </div>
+        </div>
+
+        <div class="form-field-group" style="margin-bottom: 1rem;">
+          <label class="field-label" for="review-comment-input">Leave Feedback</label>
+          <textarea id="review-comment-input" class="field-input" rows="3" placeholder="Share your experience (cleanliness, punctuality, chauffeur behavior)...">Super smooth ride from DEL airport. Car was immaculate with water bottle!</textarea>
+        </div>
+
+        <button class="btn-book-vehicle-action" id="btn-submit-review">
+          <i class="ri-send-plane-2-fill"></i> Submit Review
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. HOTEL DETAIL & ROOM SELECTOR MODAL -->
+  <div class="modal-overlay" id="hotel-detail-modal">
+    <div class="modal-container" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="hotel-modal-title">The Grand Heritage Palace</h3>
+        <button class="btn-close-modal" id="btn-close-hotel-detail">&times;</button>
+      </div>
+      <div class="modal-body" id="hotel-modal-body">
+        <!-- Dynamically Populated with Gallery & Rooms by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. EMERGENCY SOS CENTER MODAL -->
+  <div class="modal-overlay" id="sos-modal">
+    <div class="modal-container" style="max-width: 500px;">
+      <div class="modal-header" style="background: var(--color-danger-bg); border-bottom-color: rgba(239, 68, 68, 0.3);">
+        <h3 class="modal-title" style="color: var(--color-danger);"><i class="ri-alarm-warning-fill"></i> Yatrii 24/7 Safety Command</h3>
+        <button class="btn-close-modal" id="btn-close-sos">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+          If you feel unsafe at any point during your journey, trigger direct emergency response. Your live GPS coordinates will be instantly transmitted to local authorities and saved in our backend SOS registry.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <a href="tel:112" class="btn-book-vehicle-action" style="background: var(--color-danger); text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="ri-phone-fill"></i> Call Police Control (112)
+          </a>
+          <button class="btn-primary-search" id="btn-share-live-coords" style="background: var(--bg-tertiary); color: var(--text-primary); box-shadow: none;">
+            <i class="ri-share-forward-fill"></i> Share Live Location with Family
+          </button>
+        </div>
+
+        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-muted);">
+          <strong>Current Active Ride Telemetry:</strong><br>
+          Vehicle: DL 01 AB 4321 • Chauffeur: Rajesh Kumar<br>
+          GPS Lock: 28.6139° N, 77.2090° E (Live Encrypted & Dispatched)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. SLIDE-OVER DRAWER (MY BOOKINGS & ACTIVE PASSES) -->
+  <div class="drawer-overlay" id="bookings-drawer">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="modal-title"><i class="ri-ticket-2-fill text-warning"></i> My Trips & Stays</h3>
+        <button class="btn-close-modal" id="btn-close-drawer">&times;</button>
+      </div>
+      <div class="drawer-content" id="drawer-bookings-list">
+        <!-- Dynamically populated from Backend API -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- React runtime for progressive frontend migration -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- React theme island -->
+  <script src="js/react-app.js"></script>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

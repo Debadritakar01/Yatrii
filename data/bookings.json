@@ -1,0 +1,217 @@
+[
+  {
+    "pnr": "YTR-68376",
+    "otp": 3702,
+    "item": {
+      "type": "ride",
+      "vehicle": {
+        "id": "cab_suv",
+        "name": "Yatrii SUV XL",
+        "category": "daily",
+        "type": "cab",
+        "icon": "🚙",
+        "tag": "Spacious 6 Seater",
+        "tagColor": "orange",
+        "seats": 6,
+        "luggage": "4 Suitcases",
+        "eta": "6 mins away",
+        "baseFare": 140,
+        "perKm": 28,
+        "minFare": 220,
+        "description": "Premium 6-7 seater SUVs (Innova Crysta, Ertiga, Carens) for family outings and airport luggage.",
+        "features": [
+          "Seats 6+ comfortably",
+          "Large boot space",
+          "Highway ready",
+          "Dual AC vents"
+        ],
+        "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&auto=format&fit=crop&q=80"
+      },
+      "baseFare": 535,
+      "pickup": "Indira Gandhi International Airport (DEL)",
+      "drop": "Connaught Place Central Hub",
+      "distance": 14.1,
+      "duration": 26,
+      "finalTotal": 572
+    },
+    "passenger": {
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul.sharma@example.com"
+    },
+    "payment": {
+      "method": "arrival",
+      "status": "Paid",
+      "transactionId": "TXN_1787227474270"
+    },
+    "createdAt": "20 Aug, 17:34",
+    "status": "Confirmed"
+  },
+  {
+    "pnr": "YTR-12482",
+    "otp": 1618,
+    "item": {
+      "type": "hotel",
+      "hotel": {
+        "id": "hotel-1",
+        "name": "The Grand Heritage Palace & Spa",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "location": "Civil Lines, Jaipur",
+        "type": "Heritage Palace",
+        "stars": 5,
+        "rating": 4.9,
+        "reviewCount": 1420,
+        "pricePerNight": 8500,
+        "originalPrice": 12000,
+        "badge": "Bestseller",
+        "badgeColor": "amber",
+        "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80",
+        "gallery": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80",
+          "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&auto=format&fit=crop&q=80",
+          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&auto=format&fit=crop&q=80",
+          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&auto=format&fit=crop&q=80"
+        ],
+        "description": "Immerse in royal Rajputana splendor with courtyards, marble pavilions, peacocks, ayurvedic spa, and authentic royal dining.",
+        "amenities": [
+          "Free High-Speed WiFi",
+          "Swimming Pool",
+          "Luxury Ayurvedic Spa",
+          "Breakfast Included",
+          "Free Valet Parking",
+          "Airport Shuttle",
+          "Bar & Lounge",
+          "Royal Cultural Evenings"
+        ],
+        "rooms": [
+          {
+            "name": "Royal Heritage Deluxe Room",
+            "price": 8500,
+            "size": "450 sq ft",
+            "bed": "1 King Bed",
+            "capacity": "2 Adults, 1 Child",
+            "features": [
+              "Courtyard view",
+              "Marble bathtub",
+              "Free Breakfast"
+            ]
+          },
+          {
+            "name": "Maharaja Luxury Suite",
+            "price": 14500,
+            "size": "850 sq ft",
+            "bed": "1 Royal Four-Poster King",
+            "capacity": "3 Adults",
+            "features": [
+              "Private terrace",
+              "Butler service",
+              "Jacuzzi",
+              "All meals included"
+            ]
+          }
+        ]
+      },
+      "room": {
+        "name": "Royal Heritage Deluxe Room",
+        "price": 8500,
+        "size": "450 sq ft",
+        "bed": "1 King Bed",
+        "capacity": "2 Adults, 1 Child",
+        "features": [
+          "Courtyard view",
+          "Marble bathtub",
+          "Free Breakfast"
+        ]
+      },
+      "baseFare": 8500,
+      "city": "Jaipur",
+      "finalTotal": 8944
+    },
+    "passenger": {
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul.sharma@example.com"
+    },
+    "payment": {
+      "method": "upi",
+      "status": "Paid",
+      "transactionId": "TXN_1787227115468"
+    },
+    "createdAt": "20 Aug, 17:28",
+    "status": "Confirmed"
+  },
+  {
+    "pnr": "YTR-82625",
+    "otp": 5095,
+    "item": {
+      "type": "ride",
+      "vehicle": {
+        "id": "cab_prime",
+        "name": "Yatrii Prime Sedan",
+        "category": "daily",
+        "type": "cab",
+        "icon": "🚘",
+        "tag": "Executive Choice",
+        "tagColor": "purple",
+        "seats": 4,
+        "luggage": "3 Suitcases",
+        "eta": "5 mins away",
+        "baseFare": 90,
+        "perKm": 22,
+        "minFare": 150,
+        "description": "Spacious sedans (Dzire, Etios, Amaze) with extra legroom, complimentary WiFi & phone charger.",
+        "features": [
+          "Extra legroom",
+          "Free In-car WiFi",
+          "Top-tier 4.8+ drivers",
+          "Quiet ride mode"
+        ],
+        "image": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&auto=format&fit=crop&q=80"
+      },
+      "baseFare": 400,
+      "pickup": "Indira Gandhi International Airport (DEL)",
+      "drop": "Connaught Place Central Hub",
+      "distance": 14.1,
+      "duration": 26,
+      "finalTotal": 439
+    },
+    "passenger": {
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul.sharma@example.com"
+    },
+    "payment": {
+      "method": "arrival",
+      "status": "Paid",
+      "transactionId": "TXN_1787226543723"
+    },
+    "createdAt": "20 Aug, 17:19",
+    "status": "Cancelled"
+  },
+  {
+    "pnr": "YTR-10824",
+    "otp": "7821",
+    "item": {
+      "type": "ride",
+      "vehicle": {
+        "id": "cab_prime",
+        "name": "Yatrii Prime Sedan",
+        "icon": "🚘"
+      },
+      "baseFare": 485,
+      "pickup": "Indira Gandhi International Airport (DEL)",
+      "drop": "Connaught Place Central Hub",
+      "distance": 18.4,
+      "duration": 32,
+      "finalTotal": 485
+    },
+    "passenger": {
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul.sharma@example.com"
+    },
+    "createdAt": "20 Aug, 10:15",
+    "status": "Cancelled"
+  }
+]
